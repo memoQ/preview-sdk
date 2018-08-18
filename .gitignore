@@ -1,0 +1,6 @@
+packages
+bin
+/MemoQ.DemoPreviewTool/obj/*
+/.vs/*
+/MemoQ.PreviewInterfaces/obj/*
+/MemoQ.WebPreview/obj/*

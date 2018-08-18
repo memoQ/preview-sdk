@@ -1,0 +1,4 @@
+Building and running the demo
+* yarn install
+* yarn tsc
+* yarn parcel demo.html

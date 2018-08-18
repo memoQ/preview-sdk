@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+
+        body,
+        html {
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0px;
+            user-select: none;
+        }
+
+        body {
+            display: flex;
+        }
+
+        #document {
+            padding: 24px;
+        }
+
+        .preview-segment {
+            margin: 6px;
+            border: 1px transparent solid;
+        }
+
+        .preview-segment:hover {
+            border: 1px #fa6419 solid;
+        }
+
+        .highlight {
+            background-color: #fdc1a3;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="document">
+    </div>
+    <script src="./demo.ts"></script>
+
+</body>
+
+</html>

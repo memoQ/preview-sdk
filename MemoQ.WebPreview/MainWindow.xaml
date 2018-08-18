@@ -1,0 +1,40 @@
+﻿<Window x:Class="MemoQ.WebPreview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoQ.WebPreview"
+        mc:Ignorable="d"
+        Title="memoQ Web Preview Tool" Height="520" Width="654" MinWidth="400" MinHeight="300"
+        Icon="MemoQWebPreview.ico" Closing="Window_Closing" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+    <!-- Resources. -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Included dictionaries. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+		<local:ConnectControl x:Name="connectControl" DataContext="{Binding ConnectViewModel}" DockPanel.Dock="Top"
+                              HorizontalAlignment="Center" HorizontalContentAlignment="Stretch"
+                              Visibility="{Binding IsConnected, Converter={StaticResource InverseVisibilityOfBoolean}}" />
+		<DockPanel Name="videoPlayerPanel" DockPanel.Dock="Top" 
+                   Visibility="{Binding ConnectViewModel.IsConnected, Converter={StaticResource VisibilityOfBoolean}}">
+			<Grid Name="mainGrid">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+					<Label Visibility="{Binding Path=WaitingForRegistration, Converter={StaticResource VisibilityOfBoolean}}">Waiting for the web-based preview to register itself.</Label>
+					<Button Name="btnSettings" Style="{StaticResource ButtonSettings}" Click="btnSettings_Click" />
+				</StackPanel>
+				<WindowsFormsHost Grid.Row="1" Name="ehBrowser" Visibility="{Binding Path=NoContent, Converter={StaticResource InverseVisibilityOfBoolean}}" />
+				<Label Grid.Row="1" Content="The opened documents do not contain preview information." Visibility="{Binding Path=NoContent, Converter={StaticResource VisibilityOfBoolean}}"
+					   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FAFAFD" Background="#3B3751" FontSize="26" />
+			</Grid>
+        </DockPanel>
+    </DockPanel>
+</Window>
